@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TomasosPizzeria</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="all" />
+    <link href="~/css/site.css" rel="stylesheet" media="all" />
+    <link href="~/css/styling.scss" rel="stylesheet" media="all" />
+    <link href="~/css/style.css" rel="stylesheet" media="all" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a3dac3e3db.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <header style="background-color:whitesmoke">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tomasos Pizzeria</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Meny
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePizza">Pizza</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePasta">Pasta</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoiceSalad">Sallad</a>
+                            </div>
+                        <li class="nav-item mr-auto">
+                            <a class="nav-link mr-auto" asp-area="" asp-controller="Home" asp-action="Privacy">Kundinfo</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Logga in
+                            </a>
+                            <div class="dropdown-menu">
+                                <form class="px-4 py-3">
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail1">Användarnamn</label>
+                                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="t.ex Bosse123">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword1">Lösenord</label>
+                                        <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Lösenord">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Logga in</button>
+                                </form>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Ny på sidan? Registrera här!</a>
+                            </div>
+                        </li>
+
+                        <li class="active">
+                            <a class="btn btn-light btn-sm" asp-area="" asp-controller="AddToCart" asp-action="Add">
+                                <span class="glyphicon glyphicon-shopping-cart" style="color:green"></span>Cart <span class="badge">Counter</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted text-center" style="background-color:whitesmoke">
+        <div class="container">
+            &copy; 2020 - Tomasos Pizzeria - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

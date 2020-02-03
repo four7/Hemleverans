@@ -1,0 +1,37 @@
+﻿@model TomasosPizzeria.ViewModel.MenuViewModel
+
+
+<div class="div1">
+    <img src="~/images/salad2.jpg" alt="Salad" style="width:100%" />
+</div>
+<div class="centrera">
+    <hr />
+    <h3 class="text-dark">Sallader</h3>
+    <p class="text-dark">All sallad är tillagad med organiska ingredienser.</p>
+    <hr />
+</div>
+<div class="card-columns">
+    @foreach (var sallad in Model.matrattLista)
+    {
+        <div class="card card-body">
+            <span class="float-right font-weight-bold">@sallad.Pris SEK</span>
+            <h6 class="text-truncate">@sallad.MatrattNamn</h6>
+            <p class="small"><i>@sallad.Beskrivning</i></p>
+            <p class="small">
+
+                @foreach (var item in Model.produkt.MatrattProdukt)
+                {
+                    if (sallad.MatrattId == item.MatrattId)
+                    {
+                        @item.Produkt.ProduktNamn <text>,&nbsp;</text>
+                    }
+                }
+            </p>
+            <button class="float-right btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Lägg till</button>
+        </div>
+    }
+
+</div>
+
+
+

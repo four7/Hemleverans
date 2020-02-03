@@ -1,0 +1,67 @@
+﻿@model TomasosPizzeria.ViewModel.MenuViewModel
+
+<div id="dvContents">
+
+    <table class="table table-hover" width="80%">
+        <thead>
+
+            <tr>
+
+                <th>Beställning</th>
+                <th>Maträtt</th>
+                <th>Pris</th>
+
+                <th>Ta Bort</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var x in Model.produkt.MatrattProdukt)
+            {
+                <tr>
+
+                    <td>@x.Matratt.MatrattTyp</td>
+                    <td>@x.Matratt.MatrattNamn</td>
+                    
+                    <td>&#8377;@x.Matratt.Pris</td>
+
+                    <td>
+
+
+                        <button id="btn_delete" class="label label-primary" data-slno="" onclick="location.href=">
+                            <img src="~/Icons/delete.png" height="30" width="30" />
+                        </button>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+
+        @foreach (var x in Model.produkt.MatrattProdukt)
+        {
+
+
+        }
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+
+                <td><b>Total</b></td>
+                <td>
+                    &#8377;
+                </td>
+            </tr>
+
+        </tfoot>
+
+    </table>
+    <div id="footer">
+        <img src="~/Templates/Footer.jpg" style="width:100%; height:60px" />
+    </div>
+
+    <button type="button" id="btnPrint" class="btn btn-primary">Print</button>
+    <button type="button" class="btn btn-success">Continue Shopping</button>
+    <button type="button" class="btn btn-warning">Place Order</button>
+</div>

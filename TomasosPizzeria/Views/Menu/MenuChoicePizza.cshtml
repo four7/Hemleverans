@@ -1,0 +1,40 @@
+﻿@model TomasosPizzeria.ViewModel.MenuViewModel
+@{ 
+    var last = Model.produkt.MatrattProdukt.Count()-1;
+}
+
+<div class="div1">
+    <img src="~/images/pizzaheader3.jpg" alt="Pizza" style="width:100%" />
+</div>
+<div class="centrera">
+    <hr />
+    <h3 class="text-dark">Vedugnspizzor</h3>
+    <p class="text-dark">Vedugnsbakade pizzor med tomatsås</p>
+    <hr />
+</div>
+
+<div class="card-columns">
+    @foreach (var pizza in Model.matrattLista)
+    {
+    <div class="card card-body">
+        <span class="float-right font-weight-bold">@pizza.Pris SEK</span>
+        <h6 class="text-truncate">@pizza.MatrattNamn</h6>
+        <p class="small"><i>@pizza.Beskrivning</i></p>
+        <p class="small">
+
+            @foreach (var item in Model.produkt.MatrattProdukt)
+            {
+                if (pizza.MatrattId == item.MatrattId)
+                {
+                     @item.Produkt.ProduktNamn <text>,&nbsp;</text>
+                }
+            }
+        </p>
+            <button class="float-right btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Lägg till</button>
+        </div>
+    }
+
+</div>
+
+
+
