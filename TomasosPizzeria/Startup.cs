@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +29,22 @@ namespace TomasosPizzeria
             services.AddMvc(setupAction: i => i.EnableEndpointRouting = false);
             var conn = @"Server=localhost;Database=Tomasos;Trusted_Connection=True;";
             services.AddDbContext<TomasosContext>(options => options.UseSqlServer(conn));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+
+            }).AddEntityFrameworkStores<TomasosContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -40,8 +52,10 @@ namespace TomasosPizzeria
                 template: "{controller=Home}/{action=Index}"
                     );
             });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
         }
+
     }
 }

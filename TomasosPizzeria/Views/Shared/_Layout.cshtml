@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,38 +27,53 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Meny
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePizza">Pizza</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePasta">Pasta</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoiceSalad">Sallad</a>
-                            </div>
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Meny
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePizza">Pizza</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoicePasta">Pasta</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Menu" asp-action="MenuChoiceSalad">Sallad</a>
+                                </div>
+                                
+                            }
+                            else
+                            {
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Meny
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-controller="" asp-action="" style="color:currentColor;cursor:not-allowed;opacity:0.5;text-decoration:none;">Pizza</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="" asp-action="" style="color:currentColor;cursor:not-allowed;opacity:0.5;text-decoration:none;">Pasta</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="" asp-action="" style="color:currentColor;cursor:not-allowed;opacity:0.5;text-decoration:none;">Sallad</a>
+                                </div>
+                            }
+
                         <li class="nav-item mr-auto">
                             <a class="nav-link mr-auto" asp-area="" asp-controller="Home" asp-action="Privacy">Kundinfo</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Logga in
-                            </a>
-                            <div class="dropdown-menu">
-                                <form class="px-4 py-3">
-                                    <div class="form-group">
-                                        <label for="exampleDropdownFormEmail1">Användarnamn</label>
-                                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="t.ex Bosse123">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleDropdownFormPassword1">Lösenord</label>
-                                        <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Lösenord">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Logga in</button>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-action="Logout" asp-controller="Account">
+                                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto;">
+                                        Logout @User.Identity.Name
+                                    </button>
                                 </form>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Ny på sidan? Registrera här!</a>
-                            </div>
-                        </li>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Registrera</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Logga in</a>
+                            </li>
+                        }
+
 
                         <li class="active">
                             <a class="btn btn-light btn-sm" asp-area="" asp-controller="AddToCart" asp-action="Add">

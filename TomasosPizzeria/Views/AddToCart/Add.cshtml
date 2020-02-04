@@ -1,12 +1,12 @@
 ﻿@model TomasosPizzeria.ViewModel.MenuViewModel
 
-<div id="dvContents">
-
-    <table class="table table-hover" width="80%">
-        <thead>
-
-            <tr>
-
+<hr />
+<h1 class="display-4" style="text-align:center;">Kundvagn</h1>
+<hr />
+<div id="dvContents row" style="width:70%; text-align:center;">
+    <table class="table table-hover" width="50%" align="center" style="margin-left:15%;margin-right:15%;">
+        <thead style="text-align:center;">
+            <tr style="text-align:center;">
                 <th>Beställning</th>
                 <th>Maträtt</th>
                 <th>Pris</th>
@@ -19,23 +19,18 @@
             @foreach (var x in Model.produkt.MatrattProdukt)
             {
                 <tr>
-
                     <td>@x.Matratt.MatrattTyp</td>
                     <td>@x.Matratt.MatrattNamn</td>
-                    
+
                     <td>&#8377;@x.Matratt.Pris</td>
 
                     <td>
-
-
                         <button id="btn_delete" class="label label-primary" data-slno="" onclick="location.href=">
                             <img src="~/Icons/delete.png" height="30" width="30" />
                         </button>
                     </td>
                 </tr>
-
             }
-
         </tbody>
 
         @foreach (var x in Model.produkt.MatrattProdukt)
@@ -57,11 +52,7 @@
         </tfoot>
 
     </table>
-    <div id="footer">
-        <img src="~/Templates/Footer.jpg" style="width:100%; height:60px" />
-    </div>
-
-    <button type="button" id="btnPrint" class="btn btn-primary">Print</button>
-    <button type="button" class="btn btn-success">Continue Shopping</button>
-    <button type="button" class="btn btn-warning">Place Order</button>
+    <hr style="text-align:center;position:relative;left:170px;" />
+    <button type="button" class="btn btn-success" style="position:relative;left:200px;">Fortsätt handla</button>
+    <button type="button" class="btn btn-warning" style="position:relative;left:200px;" >Beställ</button>
 </div>
